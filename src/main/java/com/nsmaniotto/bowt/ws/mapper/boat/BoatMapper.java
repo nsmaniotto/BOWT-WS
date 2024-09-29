@@ -22,8 +22,19 @@ public interface BoatMapper {
      */
     @Named("toBoatListDto")
     @BeanMapping(ignoreByDefault = true)
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     BoatDto toBoatListDto(Boat boat);
+
+    /**
+     * DTO displayed in BoatDetailsDialogComponent
+     */
+    @Named("toDetailedBoatDto")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "description", target = "description")
+    BoatDto toDetailedBoatDto(Boat boat);
 
     /**
      * Others

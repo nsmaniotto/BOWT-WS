@@ -36,6 +36,11 @@ public class BoatController {
         return ResponseEntity.ok(boatDtoList);
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<BoatDto> getBoat(@PathVariable Long id) {
+        return ResponseEntity.ok(boatMapper.toDetailedBoatDto(boatService.getBoat(id)));
+    }
+
     /* =============== POST MAPPINGS =============== */
 
     @PostMapping

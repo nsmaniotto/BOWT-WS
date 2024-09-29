@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -18,6 +19,10 @@ public class BoatService {
 
     public List<Boat> getAll() {
         return boatRepository.findAllByOrderByIdAsc();
+    }
+
+    public Boat getBoat(Long id) {
+        return boatRepository.findById(id).orElseThrow(() -> new NoSuchElementException(Boat.class.getSimpleName() + "#" + id));
     }
 
     public Boat create(BoatDto boatDto) {
