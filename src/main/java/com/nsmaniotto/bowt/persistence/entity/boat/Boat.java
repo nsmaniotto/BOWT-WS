@@ -20,10 +20,10 @@ public class Boat {
     private Long id;
 
     @Column(name = "name", nullable = false)
-    @Size(max = 100)
+    @Size(min = 3, max = 15)
     private String name;
 
     @Column(name = "description", nullable = false)
-    @Size(max = 200)
+    @Size(min = 5, max = 100)
     private String description;
 }

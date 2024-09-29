@@ -2,6 +2,7 @@ package com.nsmaniotto.bowt.ws.config;
 
 import com.nsmaniotto.bowt.ws.dto.auth.ErrorDto;
 import com.nsmaniotto.bowt.ws.exceptions.BowtException;
+import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -33,5 +34,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         String errorMessage = "Encountered " + NoSuchElementException.class.getSimpleName() + " on " + e.getMessage();
         log.error(errorMessage, e);
         return handleExceptionInternal(e, errorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    protected ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e, WebRequest request) {
+        String errorMessage = "Encountered " + ConstraintViolationException.class.getSimpleName()
+                + " with constraints: " + e.getConstraintViolations().toString();
+        log.error(errorMessage, e);
+        return handleExceptionInternal(e, errorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }
