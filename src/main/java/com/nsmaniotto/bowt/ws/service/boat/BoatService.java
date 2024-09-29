@@ -34,4 +34,13 @@ public class BoatService {
         return boatRepository.save(boat);
     }
 
+    public void update(Long boatId, String name, String description) {
+        Boat boat = getBoat(boatId);
+
+        boat.setName(name);
+        boat.setDescription(description);
+
+        boatRepository.save(boat);
+    }
+
 }

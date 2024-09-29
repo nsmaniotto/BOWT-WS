@@ -5,6 +5,7 @@ import com.nsmaniotto.bowt.ws.dto.boat.BoatDto;
 import com.nsmaniotto.bowt.ws.mapper.boat.BoatMapper;
 import com.nsmaniotto.bowt.ws.service.boat.BoatService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,14 @@ public class BoatController {
         URI endpointURI = new URI("/boats/" + createdBoatDto.getId());
 
         return ResponseEntity.created(endpointURI).body(createdBoatDto);
+    }
+
+    /* =============== PUT MAPPINGS =============== */
+
+    @PutMapping(value = "{id}/name/{name}/description/{description}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id, @PathVariable String name, @PathVariable String description) {
+        boatService.update(id, name, description);
     }
 
 }
