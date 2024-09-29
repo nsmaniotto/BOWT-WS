@@ -25,4 +25,12 @@ public interface BoatMapper {
     @Mapping(source = "name", target = "name")
     BoatDto toBoatListDto(Boat boat);
 
+    /**
+     * Others
+     */
+    @Named("toIdDto")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(source = "id", target = "id")
+    BoatDto toIdDto(Boat endpoint);
+
 }
