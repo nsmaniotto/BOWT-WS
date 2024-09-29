@@ -61,4 +61,12 @@ public class BoatController {
         boatService.update(id, name, description);
     }
 
+    /* =============== DELETE MAPPINGS =============== */
+
+    @DeleteMapping(params = "id")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@RequestParam("id") List<Long> boatIdList) {
+        boatService.delete(boatIdList);
+    }
+
 }

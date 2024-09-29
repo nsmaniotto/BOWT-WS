@@ -43,4 +43,12 @@ public class BoatService {
         boatRepository.save(boat);
     }
 
+    public void delete(List<Long> boatIdList) {
+        boatIdList.forEach(this::delete);
+    }
+
+    private void delete(Long endpointId) {
+        boatRepository.deleteById(endpointId);
+    }
+
 }
