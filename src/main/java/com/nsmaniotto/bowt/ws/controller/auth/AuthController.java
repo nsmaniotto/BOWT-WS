@@ -5,6 +5,7 @@ import com.nsmaniotto.bowt.ws.dto.auth.CredentialsDto;
 import com.nsmaniotto.bowt.ws.dto.auth.SignUpDto;
 import com.nsmaniotto.bowt.ws.dto.user.UserDto;
 import com.nsmaniotto.bowt.ws.service.user.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,14 +35,14 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
+    public ResponseEntity<UserDto> login(@Valid @RequestBody CredentialsDto credentialsDto) {
         UserDto userDto = userService.login(credentialsDto);
         userDto.setToken(userAuthenticationProvider.createToken(userDto));
         return ResponseEntity.ok(userDto);
     }
 
     @PostMapping("register")
-    public ResponseEntity<UserDto> register(@RequestBody SignUpDto user) {
+    public ResponseEntity<UserDto> register(@Valid @RequestBody SignUpDto user) {
         UserDto createdUser = userService.register(user);
         createdUser.setToken(userAuthenticationProvider.createToken(createdUser));
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);

@@ -20,15 +20,15 @@ public class User {
     private Long id;
 
     @Column(name = "first_name", nullable = false)
-    @Size(max = 100)
+    @Size(min = 2, max = 20)
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
-    @Size(max = 100)
+    @Size(min = 2, max = 20)
     private String lastName;
 
     @Column(nullable = false)
-    @Size(max = 100)
+    @Size(min = 2, max = 10)
     private String login;
 
     @Column(nullable = false)
