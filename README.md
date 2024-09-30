@@ -30,3 +30,32 @@ Warning, the schema will be dropped and re-created each time the application sta
 
 To change this behavior, change the value of `spring.jpa.hibernate.ddl-auto` and `spring.datasource.initialization-mode` in the `application.yml`
 file.
+
+# Improvements
+
+Bellow sections describe possible improvements to this project
+
+## Optimisation
+
+- [BOAT] Add cache on boat resources access
+- [BOAT] Add specification on BoatRepository to filter boats
+- [DB] Consider switching to a more relevant DBMS to better fit the future needs of this project
+
+## Data model / Data source
+
+- [BOAT] Enrich boat data model with more attributes (e.g. boat creator, update date)
+- [BOAT] Use external source (e.g. API, import batch) to provide the user with existing boats
+- [AUTH] Add role to users
+- [MISC] Insert user/boat entries at server start (e.g. Liquibase)
+- [MISC] Make database persistent to not erase users and boats at each restart
+
+## Security
+
+- [AUTH] Remove JWT secret key from application.yml
+- [DB] Remove raw password from application.yml
+
+## Testing
+
+- [MISC] add unit tests
+- [MISC] add integration tests on controllers to validate both OK and KO scenarios
+- [MISC] Add architecture tests (e.g. ArchUnit) to set rules on project structure
